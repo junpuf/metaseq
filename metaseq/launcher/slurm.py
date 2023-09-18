@@ -234,8 +234,14 @@ def gen_train_command(
 
 
 def gen_srun_command_and_str(args, save_dir_key, train_log, train_stderr, train_cmd):
+    partition = os.getenv("AUTOBENCH_OPT_SLURM_P5_QUEUE", "queue2")
+    nodelist = os.getenv("AUTOBENCH_OPT_SLURM_P5_NODELIST", "queue2-dy-p548xlarge-1")
     base_srun_cmd = [
         "srun",
+        "--partition",
+        partition,
+        "--nodelist",
+        nodelist,
         "--job-name",
         f"{args.prefix}.{save_dir_key}",
         "--output",
@@ -246,8 +252,8 @@ def gen_srun_command_and_str(args, save_dir_key, train_log, train_stderr, train_
         "append",
         "--unbuffered",
     ]
-    if args.cpu_bind:
-        base_srun_cmd += [f"--cpu-bind={args.cpu_bind}"]
+    # if args.cpu_bind:
+    #     base_srun_cmd += [f"--cpu-bind={args.cpu_bind}"]
     if args.salloc:
         excluded_hosts = os.environ.get("EXCLUDED_HOSTS", None)
         included_hosts = os.environ.get("INCLUDED_HOSTS", None)
