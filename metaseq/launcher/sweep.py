@@ -262,6 +262,7 @@ def _get_args(add_extra_options_func=None, input_args: Optional[List[str]] = Non
             "(/shared/home/$USER)"
         ),
     )
+    parser.add_argument("--attn-variant", default="default")
 
     if add_extra_options_func is not None:  # mutates parser
         add_extra_options_func(parser)
