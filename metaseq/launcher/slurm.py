@@ -231,7 +231,7 @@ def gen_train_command(
     for hp in config.values():
         train_cmd.extend(map(str, hp.get_cli_args()))
 
-    train_cmd.extend(["--attn_variant", "xformers_default"])
+    train_cmd.extend(["--attn-variant", "xformers_default"])
     return train_cmd
 
 
