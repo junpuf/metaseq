@@ -196,7 +196,7 @@ def get_grid(args):
             "fully_sharded",
             save_dir_key=lambda val: "fsdp" if not no_save_params else "",
         ),
-        # hyperparam("--no-reshard-after-forward", save_dir_key=lambda _: "zero2"),
+        hyperparam("--no-reshard-after-forward", save_dir_key=lambda _: "zero2"),
         hyperparam("--use-sharded-state"),
         hyperparam("--checkpoint-activations"),
         hyperparam("--model-parallel-size", size.model_parallel),
