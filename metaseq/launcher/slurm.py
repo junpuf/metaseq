@@ -236,8 +236,8 @@ def gen_train_command(
 
 
 def gen_srun_command_and_str(args, save_dir_key, train_log, train_stderr, train_cmd):
-    partition = os.getenv("AUTOBENCH_OPT_SLURM_P5_QUEUE", "queue2")
-    nodelist = os.getenv("AUTOBENCH_OPT_SLURM_P5_NODELIST", "queue2-dy-p548xlarge-1")
+    partition = os.getenv("SLURM_JOB_PARTITION", "queue2")
+    nodelist = os.getenv("SLURM_JOB_NODELIST", "queue2-dy-p548xlarge-1")
     base_srun_cmd = [
         "srun",
         "--partition",
@@ -482,7 +482,7 @@ def launch_train(args, grid, grid_product, dry_run, postprocess_hyperparams):
         if args.local:
             local_run(args, env, train_cmd, dry_run)
         else:
-            srun_cmd_str = srun_cmd_str + " &"
+            srun_cmd_str = srun_cmd_str
             # build command
             if not args.salloc:
                 job_name = f"{args.prefix}.{save_dir_key}"
