@@ -181,7 +181,7 @@ def get_grid(args):
     grid += [
         hyperparam("--train-subset", "train"),
         hyperparam("--ignore-unused-valid-subsets"),
-        hyperparam("--num-workers", 2),
+        hyperparam("--num-workers", 8),
         hyperparam("--num-workers-valid", 1),
         hyperparam("--validate-interval-updates", 2000),
         hyperparam(
