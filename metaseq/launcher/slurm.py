@@ -236,8 +236,8 @@ def gen_train_command(
 
 
 def gen_srun_command_and_str(args, save_dir_key, train_log, train_stderr, train_cmd):
-    partition = os.getenv("AUTOBENCH_OPT_SLURM_P5_QUEUE", "queue2")
-    nodelist = os.getenv("AUTOBENCH_OPT_SLURM_P5_NODELIST", "queue2-dy-p548xlarge-1")
+    partition = os.getenv("PARTITION_QUEUE", "queue2")
+    nodelist = os.getenv("NODELIST", "queue2-dy-p548xlarge-[1-2]")
     base_srun_cmd = [
         "srun",
         "--partition",
